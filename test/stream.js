@@ -20,7 +20,7 @@ describe('query() stream()', function() {
 describe('query() stream()', function() {
   it('should return a working query', function(done) {
     var faked = [];
-    faked.push({id:"rs2032651", genotype:"D"});
+    faked.push({id:"rs2032651", g:"D"});
 
     var query = gql.query();
     query.exact("rs2032651", "D");

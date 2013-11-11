@@ -19,7 +19,7 @@ describe('query()', function() {
 
 describe('query() exact()', function() {
   it('should return a working query', function(done) {
-    var sample = {id: "test", genotype: "A"};
+    var sample = {id: "test", g: "A"};
 
     var query = gql.query();
     query.exact("test", "A");
@@ -34,8 +34,8 @@ describe('query() exact()', function() {
   });
 
   it('should return a working query with multiple statements', function(done) {
-    var sample = {id: "test", genotype: "A"};
-    var sample2 = {id: "testing", genotype: "B"};
+    var sample = {id: "test", g: "A"};
+    var sample2 = {id: "testing", g: "B"};
 
     var query = gql.query();
     query.exact("test", "A");
@@ -57,8 +57,8 @@ describe('query() exact()', function() {
   });
 
   it('should return a working query that does not overwrite finished conditions', function(done) {
-    var sample = {id: "test", genotype: "A"};
-    var sample2 = {id: "test", genotype: "B"};
+    var sample = {id: "test", g: "A"};
+    var sample2 = {id: "test", g: "B"};
 
     var query = gql.query();
     query.exact("test", "A");
@@ -82,7 +82,7 @@ describe('query() exact()', function() {
 
 describe('query() has()', function() {
   it('should return a working query', function(done) {
-    var sample = {id: "test", genotype: "GAT"};
+    var sample = {id: "test", g: "GAT"};
 
     var query = gql.query();
     query.has("test", "A");
@@ -97,8 +97,8 @@ describe('query() has()', function() {
   });
 
   it('should return a working query with multiple statements', function(done) {
-    var sample = {id: "test", genotype: "AT"};
-    var sample2 = {id: "testing", genotype: "BG"};
+    var sample = {id: "test", g: "AT"};
+    var sample2 = {id: "testing", g: "BG"};
 
     var query = gql.query();
     query.has("test", "A");
@@ -120,8 +120,8 @@ describe('query() has()', function() {
   });
 
   it('should return a working query that does not overwrite finished conditions', function(done) {
-    var sample = {id: "test", genotype: "A"};
-    var sample2 = {id: "test", genotype: "B"};
+    var sample = {id: "test", g: "A"};
+    var sample2 = {id: "test", g: "B"};
 
     var query = gql.query();
     query.has("test", "A");
@@ -145,7 +145,7 @@ describe('query() has()', function() {
 
 describe('query() hasNot()', function() {
   it('should return a working query', function(done) {
-    var sample = {id: "test", genotype: "GAT"};
+    var sample = {id: "test", g: "GAT"};
 
     var query = gql.query();
     query.hasNot("test", "B");
@@ -160,8 +160,8 @@ describe('query() hasNot()', function() {
   });
 
   it('should return a working query with multiple statements', function(done) {
-    var sample = {id: "test", genotype: "AT"};
-    var sample2 = {id: "testing", genotype: "BG"};
+    var sample = {id: "test", g: "AT"};
+    var sample2 = {id: "testing", g: "BG"};
 
     var query = gql.query();
     query.hasNot("test", "B");
@@ -186,7 +186,7 @@ describe('query() hasNot()', function() {
 
 describe('query() exactNot()', function() {
   it('should return a working query', function(done) {
-    var sample = {id: "test", genotype: "GAT"};
+    var sample = {id: "test", g: "GAT"};
 
     var query = gql.query();
     query.exactNot("test", "B");
@@ -201,8 +201,8 @@ describe('query() exactNot()', function() {
   });
 
   it('should return a working query with multiple statements', function(done) {
-    var sample = {id: "test", genotype: "AT"};
-    var sample2 = {id: "testing", genotype: "BG"};
+    var sample = {id: "test", g: "AT"};
+    var sample2 = {id: "testing", g: "BG"};
 
     var query = gql.query();
     query.exactNot("test", "B");
@@ -227,7 +227,7 @@ describe('query() exactNot()', function() {
 
 describe('query() exists()', function() {
   it('should return a working query', function(done) {
-    var sample = {id: "test", genotype: "GAT"};
+    var sample = {id: "test", g: "GAT"};
 
     var query = gql.query();
     query.exists("test");
@@ -242,8 +242,8 @@ describe('query() exists()', function() {
   });
 
   it('should return a working query with multiple statements', function(done) {
-    var sample = {id: "test", genotype: "AT"};
-    var sample2 = {id: "testing", genotype: null};
+    var sample = {id: "test", g: "AT"};
+    var sample2 = {id: "testing", g: null};
 
     var query = gql.query();
     query.exists("test");
@@ -268,7 +268,7 @@ describe('query() exists()', function() {
 
 describe('query() doesntExist()', function() {
   it('should return a working query', function(done) {
-    var sample = {id: "test", genotype: null};
+    var sample = {id: "test", g: null};
 
     var query = gql.query();
     query.doesntExist("test");
@@ -283,8 +283,8 @@ describe('query() doesntExist()', function() {
   });
 
   it('should return a working query with multiple statements', function(done) {
-    var sample = {id: "test", genotype: null};
-    var sample2 = {id: "testing", genotype: "AT"};
+    var sample = {id: "test", g: null};
+    var sample2 = {id: "testing", g: "AT"};
 
     var query = gql.query();
     query.doesntExist("test");
@@ -309,7 +309,7 @@ describe('query() doesntExist()', function() {
 
 describe('query() or()', function() {
   it('should return a working query that matches idx 0', function(done) {
-    var sample = {id: "test", genotype: "A"};
+    var sample = {id: "test", g: "A"};
 
     var query = gql.query();
     query.or(query.exact("test", "A"), query.exact("test","B"), query.exact("test2","C"));
@@ -324,7 +324,7 @@ describe('query() or()', function() {
   });
 
   it('should return a working query that matches idx 2', function(done) {
-    var sample = {id: "test2", genotype: "C"};
+    var sample = {id: "test2", g: "C"};
 
     var query = gql.query();
     query.or(query.exact("test", "A"), query.exact("test","B"), query.exact("test2","C"));
