@@ -6,8 +6,6 @@ var path = require('path');
 var should = require('should');
 require('mocha');
 
-var isMale = require('./fixtures/is-male.json');
-
 describe('query()', function() {
 
   it('should return a query builder', function(done) {
