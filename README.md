@@ -67,9 +67,12 @@ var JSONStream = require('JSONStream');
 var fs = require('fs');
 
 var jsonStream = fs.createReadStream('./genome.json');
+
 var queryStream = query.stream();
 
-jsonStream.pipe(queryStream);
+jsonStream
+  .pipe(JSONStream.parse('*'))
+  .pipe(queryStream);
 
 queryStream.on('end', function(){
   console.log(query.matches().length, "matches for genoset 144");
