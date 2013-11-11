@@ -339,3 +339,50 @@ describe('query() or()', function() {
   });
 
 });
+
+describe('query() needs()', function() {
+  it('should return a working query with correct progress', function(done) {
+    var sample = {id: "test", g: "A"};
+
+    var query = gql.query();
+    query.needs(1);
+    query.exact("test", "A");
+    query.exact("test1", "B");
+
+    query.process(sample, function(err){
+      should.not.exist(err);
+      query.matches().length.should.equal(1);
+      query.matches().should.eql([sample]);
+      query.unmatched().length.should.equal(1);
+      query.percentage().should.equal(100);
+      done();
+    });
+  });
+
+  it('should return a working query with correct progress when it goes over', function(done) {
+    var sample = {id: "test", g: "A"};
+    var sample2 = {id: "test2", g: "B"};
+
+    var query = gql.query();
+    query.needs(1);
+    query.exact("test", "A");
+    query.exact("test2", "B");
+
+    query.process(sample, function(err){
+      should.not.exist(err);
+      query.matches().length.should.equal(1);
+      query.matches().should.eql([sample]);
+      query.unmatched().length.should.equal(1);
+      query.percentage().should.equal(100);
+      query.process(sample2, function(err){
+        should.not.exist(err);
+        query.matches().length.should.equal(2);
+        query.matches().should.eql([sample, sample2]);
+        query.unmatched().length.should.equal(0);
+        query.percentage().should.equal(200);
+        done();
+      });
+    });
+  });
+
+});

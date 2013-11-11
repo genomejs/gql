@@ -30,6 +30,7 @@ This example will create a query that determines if the gender is male.
 var gql = require('gql');
 
 var query = gql.query();
+query.needs(2);
 query.exact("rs2032651", "D");
 query.has("rs2032651", "A");
 query.has("rs9341296", "C");
@@ -127,6 +128,15 @@ This will let you add a custom condition. Callback signature is `(error, isMatch
 q.add(function(snp, cb){
   cb(null, (snp.id === "rswhatever" && snp.genotype === "A"))
 });
+```
+
+#### needs(num)
+
+Adjusts the reporting of percentages. For example, to determine if a genome is male I only need to two matches for it to be 100% (even though I have 12 possible SNPs). 4 matches should be 200% not 33% in this scenario.
+
+```javascript
+q.exact("rs2032651", "D"); // will only match genotype D
+q.exact("rs2032651", "AT"); // will only match genotype AT
 ```
 
 #### process(snp[, cb])
