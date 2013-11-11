@@ -1,7 +1,7 @@
 {
    "name":"gql",
    "description":"Query language for interpreting genome SNPs",
-   "version":"0.0.1",
+   "version":"0.0.2",
    "homepage":"http://github.com/genomejs/gql",
    "repository":"git://github.com/genomejs/gql.git",
    "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
