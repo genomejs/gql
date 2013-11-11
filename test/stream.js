@@ -35,11 +35,13 @@ describe('query() stream()', function() {
     query.has("rs150173", "C");
     query.has("rs16980426", "G");
     query.has("rs16980426", "T");
+    query.or(query.exact("rs1558843", "C"), query.exact("rs1558843", "A"));
+    query.or(query.exact("rs17222419", "C"), query.exact("rs17222419", "T"));
 
     es.readArray(faked).pipe(query.stream()).on('end', function(){
       query.matches().length.should.equal(1);
       query.matches().should.eql(faked);
-      query.unmatched().length.should.equal(11);
+      query.unmatched().length.should.equal(13);
       done();
     });
   });
