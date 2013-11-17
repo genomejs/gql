@@ -21,6 +21,7 @@ describe('query() stream()', function() {
   it('should return a working query', function(done) {
     var faked = [];
     faked.push({id:"rs2032651", g:"D"});
+    faked.push({id:"rs2032652", g:"AG"});
 
     var query = gql.query();
     query.exact("rs2032651", "D");
@@ -37,9 +38,10 @@ describe('query() stream()', function() {
     query.has("rs16980426", "T");
     query.or(query.exact("rs1558843", "C"), query.exact("rs1558843", "A"));
     query.or(query.exact("rs17222419", "C"), query.exact("rs17222419", "T"));
+    query.and(query.exact("rs2032652", "AG"), query.has("rs2032652", "G"));
 
     es.readArray(faked).pipe(query.stream()).on('end', function(){
-      query.matches().length.should.equal(1);
+      query.matches().length.should.equal(2);
       query.matches().should.eql(faked);
       query.unmatched().length.should.equal(13);
       done();

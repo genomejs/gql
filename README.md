@@ -85,7 +85,7 @@ queryStream.on('end', function(){
 
 ### query()
 
-Creates a new GQL chainable query
+Creates a new GQL chainable query. Keep in mind that each condition is tested against one SNP at a time. If the condition is met then it is marked as a match and not tested again.
 
 #### exact(id, genotype)
 
@@ -118,6 +118,22 @@ Evaluates to true if no allele has been observed
 
 ```javascript
 q.doesntExist("rs2032651");
+```
+
+#### or(conditions...)
+
+Evaluates to true if any of the argument conditions evaluates to true
+
+```javascript
+q.or(q.has("rs2032651", "A"), q.doesntExist("rs2032651"));
+```
+
+#### and(conditions...)
+
+Evaluates to true if all of the argument conditions evaluates to true
+
+```javascript
+q.and(q.exists("rs2032651"), q.has("rs2032651", "A"));
 ```
 
 #### add(fn)
