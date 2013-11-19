@@ -33,6 +33,21 @@ describe('query() exact()', function() {
     });
   });
 
+  it('should return a working query that matches roughly', function(done) {
+    var sample = {id: "test", g: "AB"};
+
+    var query = gql.query();
+    query.exact("test", "BA");
+
+    query.process(sample, function(err){
+      should.not.exist(err);
+      query.matches().length.should.equal(1);
+      query.matches().should.eql([sample]);
+      query.unmatched().length.should.equal(0);
+      done();
+    });
+  });
+
   it('should return a working query with multiple statements', function(done) {
     var sample = {id: "test", g: "A"};
     var sample2 = {id: "testing", g: "B"};
