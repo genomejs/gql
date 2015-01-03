@@ -1,32 +1,40 @@
 {
-   "name":"gql",
-   "description":"Query language for interpreting genome SNPs",
-   "version":"0.3.0",
-   "homepage":"http://github.com/genomejs/gql",
-   "repository":"git://github.com/genomejs/gql.git",
-   "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
-   "main":"./index.js",
-   "tags": ["genomejs", "genoset", "gs144", "dna", "genetics", "genes", "query", "language"],
-   
-   "dependencies":{
-      "event-stream":"*",
-      "async":"*",
-      "nop":"*"
-   },
-   "devDependencies":{
-      "mocha":"*",
-      "should":"*"
-   },
-   "scripts":{
-      "test":"mocha"
-   },
-   "engines":{
-      "node":">= 0.4.0"
-   },
-   "licenses":[
-      {
-         "type":"MIT",
-         "url":"http://github.com/genomejs/gql/raw/master/LICENSE"
-      }
-   ]
+  "name": "gql",
+  "description": "Query language for interpreting genome SNPs",
+  "version": "0.4.0",
+  "homepage": "http://github.com/genomejs/gql",
+  "repository": "git://github.com/genomejs/gql.git",
+  "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main": "./index.js",
+  "tags": [
+    "genomejs",
+    "genoset",
+    "gs144",
+    "dna",
+    "genetics",
+    "genes",
+    "query",
+    "language"
+  ],
+  "dependencies": {
+    "event-stream": "*",
+    "async": "*",
+    "nop": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/genomejs/gql/raw/master/LICENSE"
+    }
+  ]
 }
