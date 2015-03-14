@@ -96,6 +96,8 @@ q.exact("rs2032651", "D"); // will only match genotype D
 q.exact("rs2032651", "AT"); // will only match genotype AT
 ```
 
+Object representation: `{"exact": ["rs2032651", "D"]}`
+
 #### has(id, genotype)
 
 Evaluates to true if the allele was observed at all
@@ -104,6 +106,9 @@ Evaluates to true if the allele was observed at all
 q.has("rs2032651", "A"); // will match GA, GAT, AB, etc.
 ```
 
+Object representation: `{"has": ["rs2032651", "A"]}`
+
+
 #### exists(id)
 
 Evaluates to true if any allele has been observed
@@ -111,6 +116,7 @@ Evaluates to true if any allele has been observed
 ```javascript
 q.exists("rs2032651");
 ```
+Object representation: `{"exists": "rs2032651", "A"}`
 
 #### doesntExist(id)
 
@@ -120,6 +126,8 @@ Evaluates to true if no allele has been observed
 q.doesntExist("rs2032651");
 ```
 
+Object representation: `{"doesntExist": "rs2032651", "A"}`
+
 #### or(conditions...)
 
 Evaluates to true if any of the argument conditions evaluates to true
@@ -128,6 +136,8 @@ Evaluates to true if any of the argument conditions evaluates to true
 q.or(q.has("rs2032651", "A"), q.doesntExist("rs2032651"));
 ```
 
+Object representation: `{"or": [....]}`
+
 #### and(conditions...)
 
 Evaluates to true if all of the argument conditions evaluates to true
@@ -135,6 +145,9 @@ Evaluates to true if all of the argument conditions evaluates to true
 ```javascript
 q.and(q.exists("rs2032651"), q.has("rs2032651", "A"));
 ```
+
+Object representation: `{"and": [....]}`
+
 
 #### add(fn)
 
@@ -146,6 +159,8 @@ q.add(function(snp, cb){
 });
 ```
 
+Object representation: `{"function": function(snp, cb) {...}}`
+
 #### needs(num)
 
 Adjusts the reporting of percentages. For example, to determine if a genome is male I only need to two matches for it to be 100% (even though I have 12 possible SNPs). 4 matches should be 200% not 33% in this scenario.
@@ -153,6 +168,40 @@ Adjusts the reporting of percentages. For example, to determine if a genome is m
 ```javascript
 q.exact("rs2032651", "D"); // will only match genotype D
 q.exact("rs2032651", "AT"); // will only match genotype AT
+```
+
+#### export()
+
+Export the query as a javascript object that will have a key `conditions`
+with an array of object representations. If `needs` was specified it will also
+have a `needs` key with that value.
+
+Example of the gql json format:
+
+```json
+{"conditions":[
+  {"exact":["rs2032651","D"]},
+  {"has":["rs2032651","A"]},
+  {"has":["rs9341296","C"]},
+  {"has":["rs9341296","T"]},
+  {"has":["rs13304168","C"]},
+  {"has":["rs13304168","T"]},
+  {"has":["rs1118473","A"]},
+  {"has":["rs1118473","G"]},
+  {"has":["rs150173","A"]},
+  {"has":["rs150173","C"]},
+  {"has":["rs16980426","G"]},
+  {"has":["rs16980426","T"]},
+  {"or":[
+    {"exact":["rs1558843","A"]},
+    {"exact":["rs1558843","C"]}
+  ]},
+  {"or":[
+    {"exact":["rs17222419","T"]},
+    {"exact":["rs17222419","C"]}
+  ]}
+],
+"needs":2}
 ```
 
 #### process(snp[, cb])
@@ -171,9 +220,12 @@ Returns expecting/matches
 
 Returns condition matches so far
 
-#### unmatched()
+#### unmatched([opts])
 
 Returns all conditions yet to be matched
+
+Returns the unmatched conditions as objects with `{type: 'object'}`.
+Otherwise the conditions will be functions.
 
 #### completed()
 
