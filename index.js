@@ -50,9 +50,12 @@ module.exports = logic = {
     if (typeof v !== 'string') {
       throw new Error('has can only check for strings');
     }
+    if (v.length !== 1) {
+      throw new Error('has only accepts one allele, use exact instead')
+    }
     return function(data){
       var snp = data[k];
-      return !!(snp && snp.genotype && snp.indexOf(v) !== -1);
+      return !!(snp && snp.genotype && snp.genotype.indexOf(v) !== -1);
     };
   },
   exact: function(k, v){
