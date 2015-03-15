@@ -28,6 +28,14 @@ module.exports = logic = {
       return (matches.length >= num);
     };
   },
+  or: function(conditions){
+    if (!Array.isArray(conditions) || conditions.length === 0) {
+      throw new Error('or must receive an array with conditions');
+    }
+    return function(data){
+      return conditions.some(callFn(data));
+    };
+  },
   not: function(condition){
     if (typeof condition !== 'function') {
       throw new Error('not must receive a function');
@@ -43,7 +51,7 @@ module.exports = logic = {
       throw new Error('exists must receive a key name');
     }
     return function(data){
-      return data[k] != null;
+      return data[k] != null && data[k].genotype != null;
     };
   },
   has: function(k, v){
@@ -69,12 +77,6 @@ module.exports = logic = {
   },
 
   // sugar
-  or: function(conditions){
-    if (!Array.isArray(conditions) || conditions.length === 0) {
-      throw new Error('or must receive an array with conditions');
-    }
-    return logic.atLeast(1, conditions);
-  },
   none: function(conditions){
     if (!Array.isArray(conditions) || conditions.length === 0) {
       throw new Error('none must receive an array with conditions');

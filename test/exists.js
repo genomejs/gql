@@ -2,7 +2,7 @@ var gql = require('../');
 var should = require('should');
 require('mocha');
 
-describe('exists', function() {
+describe('exists()', function() {
   it('should match with two alleles', function() {
     var data = {
       rs1234: {
@@ -23,16 +23,16 @@ describe('exists', function() {
   });
   it('should not match with no data', function() {
     var data = {};
-    var fn = gql.exists('rs1234', 'A');
+    var fn = gql.exists('rs1234');
     fn(data).should.equal(false);
   });
-  it('should match with no genotype', function() {
+  it('should not match with no genotype', function() {
     var data = {
       rs1234: {
         genotype: null
       }
     };
     var fn = gql.exists('rs1234');
-    fn(data).should.equal(true);
+    fn(data).should.equal(false);
   });
 });

@@ -2,7 +2,7 @@ var genotypeMatch = require('../lib/genotypeMatch');
 var should = require('should');
 require('mocha');
 
-describe('lib/genotypeMatch', function() {
+describe('lib/genotypeMatch()', function() {
   it('should match straight forward with two alleles', function(done) {
     var a = 'AB';
     var b = 'AB';

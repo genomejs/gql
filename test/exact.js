@@ -2,7 +2,7 @@ var gql = require('../');
 var should = require('should');
 require('mocha');
 
-describe('exact', function() {
+describe('exact()', function() {
   it('should match with two alleles', function() {
     var data = {
       rs1234: {

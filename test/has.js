@@ -2,7 +2,7 @@ var gql = require('../');
 var should = require('should');
 require('mocha');
 
-describe('has', function() {
+describe('has()', function() {
   it('should throw error with two alleles', function() {
     var data = {
       rs1234: {

@@ -2,7 +2,7 @@ var gql = require('../');
 var should = require('should');
 require('mocha');
 
-describe('not', function() {
+describe('not()', function() {
   it('should invert a truthy function', function() {
     var fn = function(d) {
       should.exist(d);
