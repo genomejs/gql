@@ -8,9 +8,9 @@ function callFn(data) {
 
 module.exports = logic = {
   // higher-level, operates on nested conditions
-  all: function(conditions){
+  and: function(conditions){
     if (!Array.isArray(conditions) || conditions.length === 0) {
-      throw new Error('all must receive an array with conditions');
+      throw new Error('and must receive an array with conditions');
     }
     return function(data){
       return conditions.every(callFn(data));
