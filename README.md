@@ -94,15 +94,15 @@ Inverts the result of another condition.
 
 ```javascript
 // evaluates to true if rs2032651 != AA
-q.not(q.exact('rs2032651', 'AA'));
+var query = q.not(q.exact('rs2032651', 'AA'));
 
-q({
+query({
   rs2032651: {
     genotype: 'TT'
   }
 }); // true
 
-q({
+query({
   rs2032651: {
     genotype: 'AA'
   }
@@ -122,12 +122,12 @@ q.or([
 ]);
 ```
 
-#### all(conditions...)
+#### and(conditions...)
 
 Evaluates to true if all of the given condition functions evaluate to true.
 
 ```javascript
-q.all([
+q.and([
   q.exists('rs2032652'),
   q.has('rs2032651', 'A')
 ]);
