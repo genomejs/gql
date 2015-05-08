@@ -28,6 +28,23 @@ module.exports = logic = {
       return (matches.length >= num);
     };
   },
+  only: function(k, v){
+    if (typeof v !== 'string') {
+      throw new Error('only can only check for strings');
+    }
+    if (v.length !== 1) {
+      throw new Error('only accepts only one allele')
+    }
+    return function(data){
+      var snp = data[k];
+      if (!(snp && snp.genotype)) {
+        return false;
+      }
+      return snp.genotype.split('').every(function(allele) {
+        return allele === v;
+      });
+    };
+  },
   or: function(conditions){
     if (!Array.isArray(conditions) || conditions.length === 0) {
       throw new Error('or must receive an array with conditions');
