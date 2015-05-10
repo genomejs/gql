@@ -109,6 +109,14 @@ query({
 }); // false
 ```
 
+#### only(id, allele)
+
+Evaluates to true if only the allele was observed at the specified position.
+
+```javascript
+q.only('rs2032651', 'A'); // will match A, AA, AAA, etc.
+```
+
 ### Aggregate Conditions
 
 #### or(conditions...)
