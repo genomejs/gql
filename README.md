@@ -141,7 +141,7 @@ q.and([
 ]);
 ```
 
-#### At Least(number, conditions...)
+#### atLeast(number, conditions...)
 
 Evaluates to true if the number of given condition functions evaluating to true is equal to or greater than the given number.
 
