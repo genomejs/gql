@@ -141,6 +141,19 @@ q.and([
 ]);
 ```
 
+### At Least(number, conditions...)
+
+Evaluates to true if the number of given condition functions evaluating to true is equal to or greater than the given number.
+
+```javascript
+q.atLeast(2, [
+  q.exists('rs2032652'),
+  q.has('rs2032651', 'A'),
+  q.exact('rs2032653', 'AT'),
+  q.exact('rs2032654', 'GG')
+]);
+```
+
 #### none(conditions...)
 
 Evaluates to true if all of the given condition functions evaluate to false.
