@@ -22,6 +22,8 @@
 
 This query language is for use with the genomejs JSON format. See the [dna2json](https://github.com/genomejs/dna2json) repository for more information.
 
+Just a reminder: deletions are represented as `-`!
+
 ## Usage
 
 This example will create a query that determines if a person is sickle cell effected.
@@ -62,12 +64,6 @@ Evaluates to true if this was the only allele observed.
 ```javascript
 q.exact('rs2032651', 'D'); // will only match genotype D
 q.exact('rs2032651', 'AT'); // will only match genotype AT
-```
-
-To test for deletions, check for null:
-
-```javascript
-q.exact('rs2032651', null);
 ```
 
 #### has(id, genotype)
