@@ -64,6 +64,12 @@ q.exact('rs2032651', 'D'); // will only match genotype D
 q.exact('rs2032651', 'AT'); // will only match genotype AT
 ```
 
+To test for deletions, check for null:
+
+```javascript
+q.exact('rs2032651', null);
+```
+
 #### has(id, genotype)
 
 Evaluates to true if the allele was observed at all.

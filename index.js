@@ -84,12 +84,14 @@ module.exports = logic = {
     };
   },
   exact: function(k, v){
-    if (typeof v !== 'string') {
-      throw new Error('exact can only check for strings');
+    if (typeof v !== 'string' && v !== null) {
+      throw new Error('exact can only check for strings or null');
     }
     return function(data){
       var snp = data[k];
-      return !!(snp && snp.genotype && roughMatch(snp.genotype, v));
+      if (!snp) return false
+      if (snp.genotype === v) return true
+      return roughMatch(snp.genotype, v);
     };
   },
 

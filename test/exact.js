@@ -3,6 +3,15 @@ var should = require('should');
 require('mocha');
 
 describe('exact()', function() {
+  it('should match with null', function() {
+    var data = {
+      rs1234: {
+        genotype: null
+      }
+    };
+    var fn = gql.exact('rs1234', null);
+    fn(data).should.equal(true);
+  });
   it('should match with two alleles', function() {
     var data = {
       rs1234: {
